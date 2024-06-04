@@ -1,0 +1,26 @@
+<odoo>
+
+    <record id="booking_calendar_view" model="ir.ui.view">
+        <field name="name">booking.calendar.view</field>
+        <field name="model">ncc.service</field>
+        <field name="arch" type="xml">
+            <calendar string="Booking" date_start="service_datetime" color="driver">
+                <field name="client_email"/>
+                <field name="service_datetime"/>
+                <field name="departure_loc"/>
+                <field name="arrival_loc"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="booking_calendar_action" model="ir.actions.act_window">
+        <field name="name">Calendar</field>
+        <field name="res_model">ncc.service</field>
+        <field name="view_mode">calendar</field>
+    </record>
+
+    <menuitem id="calendar_booking_menu" name="Calendario" parent="ncc_root_menu" action="booking_calendar_action" sequence="20"/>
+
+
+</odoo>
+

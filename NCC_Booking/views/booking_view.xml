@@ -1,0 +1,58 @@
+<odoo>
+    <data>
+    <record id="booking_tree_view" model="ir.ui.view">
+        <field name="name">booking.tree.view</field>
+        <field name="model">ncc.service</field>
+        <field name="arch" type="xml">
+            <tree create="true">
+                <field name="id"/>
+                <field name="client_email"/>
+                <field name="service_datetime"/>
+                <field name="departure_loc"/>
+                <field name="arrival_loc"/>
+                <field name="price"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="is_paid"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="booking_form_view" model="ir.ui.view">
+        <field name="name">booking.form.view</field>
+        <field name="model">ncc.service</field>
+        <field name="arch" type="xml">
+            <form string="Prenotazione">
+            <group>
+                <group>
+                    <field name="id"/>
+                    <field name="client_email"/>
+                    <field name="service_datetime"/>
+                    <field name="departure_loc"/>
+                    <field name="arrival_loc"/>
+                    <field name="price"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="is_paid"/>
+                </group>
+            </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="booking_action" model="ir.actions.act_window">
+        <field name="name">Booking</field>
+        <field name="res_model">ncc.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="booking_tree_view"/>
+        <field name="view_ids" eval="[(5, 0, 0), (0, 0, {'view_mode': 'tree', 'view_id': ref('booking_tree_view')}), (0, 0, {'view_mode': 'form', 'view_id': ref('booking_form_view')})]"/>
+        
+    </record>
+
+    
+
+    <!-- Menu -->
+
+    <menuitem id="ncc_root_menu" name="NCC" sequence="10"/>
+    <menuitem id="booking_menu" name="Prenotazioni" parent="ncc_root_menu" action="booking_action" sequence="10"/>
+    
+    </data>
+</odoo>

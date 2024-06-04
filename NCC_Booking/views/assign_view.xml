@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+    <record id="assign_tree_view" model="ir.ui.view">
+        <field name="name">assign.tree.view</field>
+        <field name="model">ncc.service</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="id"/>
+                <field name="service_datetime" readonly="1"/>
+                <field name="departure_loc" readonly="1"/>
+                <field name="arrival_loc" readonly="1"/>
+                <field name="driver"/>
+                <field name="car"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="assign_form_view" model="ir.ui.view">
+        <field name="name">assign.form.view</field>
+        <field name="model">ncc.service</field>
+        <field name="arch" type="xml">
+            <form string="Assegnazione Autista e Auto">
+            <group>
+                <group>
+                    <field name="id"/>
+                    <field name="service_datetime" readonly="1"/>
+                    <field name="departure_loc" readonly="1"/>
+                    <field name="arrival_loc" readonly="1"/>
+                    <field name="driver"/>
+                    <field name="car"/>
+                </group>
+            </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="assign_action" model="ir.actions.act_window">
+        <field name="name">Assign</field>
+        <field name="res_model">ncc.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="assign_tree_view"/>
+        <field name="view_ids" eval="[(5, 0, 0), (0, 0, {'view_mode': 'tree', 'view_id': ref('assign_tree_view')}), (0, 0, {'view_mode': 'form', 'view_id': ref('assign_form_view')})]"/>
+        
+    </record>
+
+    <menuitem id="assign_menu" name="Assegnazione Servizi" parent="ncc_root_menu" action="assign_action" sequence="30"/>
+    </data>
+
+</odoo>
